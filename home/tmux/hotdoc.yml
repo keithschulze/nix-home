@@ -45,11 +45,18 @@ root: ~/Development/github
 # attach: false
 
 windows:
+  - wiki:
+      root: ~/Development/github
+      layout: main-vertical
+      panes:
+        - vw
+        -
   - hotdoc-data:
       root: ~/Development/github/hotdoc-data
       layout: main-vertical
       panes:
         - nvim
+        -
   - cubanpete:
       root: ~/Development/github/hotdoc-flask-onboarding
       layout: main-vertical

@@ -23,24 +23,8 @@ let
     meta.homepage = "https://github.com/josa42/coc-sh/";
   };
 
-  # notational-fzf-vim = pkgs.vimUtils.buildVimPlugin {
-  #   name = "notational-fzf-vim";
-  #   src = pkgs.fetchFromGitHub {
-  #     owner = "alok";
-  #     repo = "notational-fzf-vim";
-  #     rev = "2358b63f1a849b95baf6378e1a9a971c38773ada";
-  #     sha256 = "1j44rlh430q015abdyjq7wj6zz2sj1kjsrw1wj0lx1d73wbkhdyk";
-  #   };
-  # };
-
-  # doom-emacs = pkgs.callPackage (builtins.fetchTarball {
-  #   url = https://github.com/vlaci/nix-doom-emacs/archive/master.tar.gz;
-  # }) {
-  #   doomPrivateDir = ./home/emacs/doom.d;  # Directory containing your config.el init.el
-  #                               # and packages.el files
-  # };
-
 in {
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -63,6 +47,10 @@ in {
 
   nixpkgs.config.allowUnfree = true;
 
+  imports = if builtins.getEnv "ROLE_ENV" == "personal"
+  then [ ./role/personal.nix ]
+  else [ ./role/work.nix ];
+
   programs.ssh.enable = true;
 
   home.packages = with pkgs; [
@@ -74,23 +62,32 @@ in {
     fd
 
     # dev
+    awscli2
     shellcheck
     tmux
     tmuxinator
     graphviz
-    nodejs
+
+    # languages
     gcc
-    google-cloud-sdk
-    terraform
-    aws-vault
+    jdk11
+    nodejs
+
+    # language tools
+    rustup
     poetry
     cookiecutter
 
-    # doom-emacs
 
+    # work
+    sops
+    google-cloud-sdk
+    terraform
+    aws-vault
+    erlang
+    elixir
     cfssl
     kubectl
-    jdk11
   ];
 
   programs.gpg = {
@@ -139,7 +136,7 @@ in {
       save = 50000;
     };
     shellAliases = {
-      vw = "vim -c VimwikiIndex";
+      vw = "nvim -c VimwikiIndex";
 
       mux="tmuxinator";
 
@@ -153,7 +150,7 @@ in {
       gen-pwd = "openssl rand -base64 32";
     };
     sessionVariables = rec {
-      EDITOR = "vim";
+      EDITOR = "nvim";
       FZF_DEFAULT_COMMAND = "rg --files --no-ignore-vcs --hidden";
       CSR_USER = "keithschulze";
       CC = "clang";
@@ -200,7 +197,6 @@ in {
 
   programs.neovim = {
     enable = true;
-    vimAlias = true;
     extraConfig = builtins.readFile ./home/extraConfig.vim;
 
     extraPython3Packages = (ps: with ps; [jedi]);
@@ -231,7 +227,6 @@ in {
       airline
 
       # Languages
-      # nvim-lsp
       coc-nvim
       coc-python
       coc-yaml
@@ -241,13 +236,44 @@ in {
 
       vimwiki
       vim-zettel
-      # notational-fzf-vim
     ];
   };
 
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
+    settings = {
+      aws.symbol = "  ";
+      battery = {
+        full_symbol = "";
+        charging_symbol = "";
+        discharging_symbol = "";
+      };
+      conda.symbol = " ";
+      dart.symbol = " ";
+      docker.symbol = " ";
+      elixir.symbol = " ";
+      elm.symbol = " ";
+      gcloud.symbol = "  ";
+      git_branch.symbol = " ";
+      golang.symbol = " ";
+      haskell.symbol = " ";
+      hg_branch.symbol = " ";
+      java.symbol = " ";
+      julia.symbol = " ";
+      memory_usage.symbol = " ";
+      nim.symbol = " ";
+      nix_shell.symbol = " ";
+      nodejs.symbol = " ";
+      package.symbol = " ";
+      perl.symbol = " ";
+      php.symbol = " ";
+      python.symbol = " ";
+      ruby.symbol = " ";
+      rust.symbol = " ";
+      scala.symbol = " ";
+      swift.symbol = "ﯣ ";
+    };
   };
 
   programs.tmux = {
@@ -358,6 +384,7 @@ in {
       vscode-extensions.ms-azuretools.vscode-docker
       vscode-extensions.redhat.vscode-yaml
       vscode-extensions.vscodevim.vim
+      vscode-extensions.matklad.rust-analyzer
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "github-vscode-theme";
@@ -378,10 +405,22 @@ in {
         sha256 = "80b7f5704ff8f8094d700bf74cc375d6cc1a753a4ce36a62fb4e46c4d00436bc";
       }
       {
+        name = "vscode-pylance";
+        publisher = "ms-python";
+        version = "2020.11.2";
+        sha256 = "0n2dm21vgzir3hx1m3pmx7jq4zy3hdxfsandd2wv5da4fs9b5g50";
+      }
+      {
         name = "vsliveshare-pack";
         publisher = "MS-vsliveshare";
         version = "0.4.0";
         sha256 = "c5375f3aa772a40696a66b5820cd07ee0c02cb58d7365e7e1daaef556ff70226";
+      }
+      {
+        name = "elixir-ls";
+        publisher = "JakeBecker";
+        version = "0.6.1";
+        sha256 = "1rrbn4vyx033jcbgqhfpqjqahr3qljawljzal8j73kk0z12kqglf";
       }
     ];
     userSettings = {
@@ -410,16 +449,6 @@ in {
       "vim.normalModeKeyBindingsNonRecursive" = [
           {
               "before" = [
-                  "leader"
-                  "h"
-              ];
-              "after" = [
-                  "<C-w>"
-                  "h"
-              ];
-          }
-          {
-              "before" = [
                   "<C-l>"
               ];
               "after" = [
@@ -438,12 +467,20 @@ in {
           }
           {
               "before" = [
-                  "leader"
-                  "l"
+                  "<C-j>"
               ];
               "after" = [
                   "<C-w>"
-                  "l"
+                  "j"
+              ];
+          }
+          {
+              "before" = [
+                  "<C-k>"
+              ];
+              "after" = [
+                  "<C-w>"
+                  "k"
               ];
           }
           {
@@ -543,6 +580,76 @@ in {
                   }
               ];
           }
+          {
+              "before" = [
+                  "leader"
+                  "l"
+                  "d"
+              ];
+              "after" = [];
+              "commands" = [
+                  {
+                      "command" = "editor.action.peekDefinition";
+                      "args" = [];
+                  }
+              ];
+          }
+          {
+              "before" = [
+                  "leader"
+                  "l"
+                  "r"
+              ];
+              "after" = [];
+              "commands" = [
+                  {
+                      "command" = "editor.action.goToReferences";
+                      "args" = [];
+                  }
+              ];
+          }
+          {
+              "before" = [
+                  "leader"
+                  "l"
+                  "q"
+              ];
+              "after" = [];
+              "commands" = [
+                  {
+                      "command" = "editor.action.quickFix";
+                      "args" = [];
+                  }
+              ];
+          }
+          {
+              "before" = [
+                  "leader"
+                  "l"
+                  "n"
+              ];
+              "after" = [];
+              "commands" = [
+                  {
+                      "command" = "editor.action.rename";
+                      "args" = [];
+                  }
+              ];
+          }
+          {
+              "before" = [
+                  "leader"
+                  "l"
+                  "h"
+              ];
+              "after" = [];
+              "commands" = [
+                  {
+                      "command" = "editor.action.showHover";
+                      "args" = [];
+                  }
+              ];
+          }
       ];
       "vim.visualModeKeyBindingsNonRecursive" = [
           {
@@ -600,16 +707,12 @@ in {
       "editor.formatOnSave" = true;
       "breadcrumbs.enabled" = true;
       "editor.suggestSelection" = "first";
-      "vsintellicode.modify.editor.suggestSelection" = "automaticallyOverrodeDefaultValue";
-      "python.jediEnabled" = false;
+      "python.languageServer" = "Pylance";
       "workbench.activityBar.visible" = true;
       "workbench.editor.showTabs" = false;
+      "files.insertFinalNewline" = true;
     };
   };
-
-  # home.file.".emacs.d/init.el".text = ''
-  #    (load "default.el")
-  # '';
 
   home.file.".config/tmuxinator/hotdoc.yml".source = ./home/tmux/hotdoc.yml;
 }
