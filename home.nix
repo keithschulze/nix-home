@@ -1,29 +1,6 @@
 { config, pkgs, ... }:
 
-let
-  vim-zettel = pkgs.vimUtils.buildVimPlugin {
-    name = "vim-zettel";
-    src = pkgs.fetchFromGitHub {
-      owner = "michal-h21";
-      repo = "vim-zettel";
-      rev = "5f046caa2044d2ecd08ff0ce7aa0e73d70a77e50";
-      sha256 = "0jrwirz6dhhd4mhrw5vvkdvfhla22hcmxfgxbqdcl272cgpplg5x";
-    };
-  };
-
-  coc-explorer = pkgs.vimUtils.buildVimPluginFrom2Nix {
-    pname = "coc-sh";
-    version = "2020-09-15";
-    src = pkgs.fetchFromGitHub {
-      owner = "josa42";
-      repo = "coc-sh";
-      rev = "179138ed7ceb04b02a40b7541ec8fd6843721712";
-      sha256 = "163kj7m2388rr17hr21wgrl7bhfx0l9ilwg1g5vh38isdjkk0vh0";
-    };
-    meta.homepage = "https://github.com/josa42/coc-sh/";
-  };
-
-in {
+{
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -46,10 +23,6 @@ in {
   news.display = "silent";
 
   nixpkgs.config.allowUnfree = true;
-
-  imports = if builtins.getEnv "ROLE_ENV" == "personal"
-  then [ ./role/personal.nix ]
-  else [ ./role/work.nix ];
 
   programs.ssh.enable = true;
 
@@ -197,7 +170,7 @@ in {
 
   programs.neovim = {
     enable = true;
-    extraConfig = builtins.readFile ./home/extraConfig.vim;
+    extraConfig = builtins.readFile ./config/extraConfig.vim;
 
     extraPython3Packages = (ps: with ps; [jedi]);
 
@@ -373,7 +346,7 @@ in {
       sensible
       yank
       vim-tmux-navigator
-      (pkgs.callPackage ./apps/tmux {}).nord
+      (pkgs.callPackage ./lib/tmux {}).nord
     ];
   };
 
@@ -714,5 +687,5 @@ in {
     };
   };
 
-  home.file.".config/tmuxinator/hotdoc.yml".source = ./home/tmux/hotdoc.yml;
+  home.file.".config/tmuxinator/hotdoc.yml".source = ./config/tmux/hotdoc.yml;
 }
