@@ -1,19 +1,17 @@
-{ fetchFromGitHub
-, pkgs
-}:
+{ pkgs }:
 
-let {
-  nord = pkgs.tmuxPlugins.mkDerivation {
+let
+  nord = pkgs.tmuxPlugins.mkTmuxPlugin {
     pluginName = "nord";
     version = "unstable-2019-07-04";
-    src = fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "arcticicestudio";
       repo = "nord-tmux";
       rev = "v0.3.0";
       sha256 = "14xhh49izvjw4ycwq5gx4if7a0bcnvgsf3irywc3qps6jjcf5ymk";
     };
   };
-} in {
+in {
   enable = true;
   keyMode = "vi";
   historyLimit = 102400;
@@ -112,4 +110,4 @@ let {
     vim-tmux-navigator
     nord
   ];
-};
+}

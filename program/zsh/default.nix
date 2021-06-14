@@ -1,5 +1,3 @@
-{ config, lib, pkgs, ... }:
-
 {
   enable = true;
   enableCompletion = true;

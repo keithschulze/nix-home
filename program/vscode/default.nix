@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   enable = true;
@@ -14,6 +14,12 @@
       publisher = "Github";
       version = "1.1.3";
       sha256 = "a09df93744c400807a8418d110e8b12c480c8c129f439a0996a90159938d618d";
+    }
+    {
+      name = "material-palenight-theme";
+      publisher = "whizkydee";
+      version = "2.0.2";
+      sha256 = "1lh4bz8nfxshi90h1dbliw3mi9sh5m5z46f2dhm5lam4xxfjkwgz";
     }
     {
       name = "plantuml";
@@ -47,7 +53,7 @@
     }
   ];
   userSettings = {
-    "workbench.colorTheme" = "GitHub Dark";
+    "workbench.colorTheme" = "Palenight Theme";
     "vim.easymotion" = true;
     "vim.insertModeKeyBindings" = [
         {
@@ -301,7 +307,8 @@
     ];
     "vim.enableNeovim" = true;
     "vim.textwidth" = 80;
-    "vim.neovimPath" = "/Users/keithshulze/.nix-profile/bin/nvim";
+    "vim.neovimPath" = "/Users/keithschulze/.nix-profile/bin/nvim";
+    "git.path" = "/Users/keithschulze/.nix-profile/bin/git";
     "vim.gdefault" = true;
     "vim.sneak" = true;
     "vim.useSystemClipboard" = true;
@@ -324,13 +331,13 @@
     };
     "editor.renderControlCharacters" = false;
     "terminal.integrated.fontSize" = 15;
-    "terminal.integrated.shellArgs.osx" = [];
+    "terminal.integrated.shellArgs.osx" = ["-l"];
     "markdown.preview.fontSize" = 15;
-    "vim.easymotionMarkerFontSize" = "15";
     "editor.formatOnSave" = true;
     "breadcrumbs.enabled" = true;
     "editor.suggestSelection" = "first";
     "python.languageServer" = "Pylance";
+    "python.venvPath" = "/Users/keithschulze/Library/Caches/pypoetry/virtualenvs";
     "workbench.activityBar.visible" = true;
     "workbench.editor.showTabs" = false;
     "files.insertFinalNewline" = true;

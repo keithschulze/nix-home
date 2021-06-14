@@ -1,5 +1,3 @@
-{ config, lib, pkgs, ... }:
-
 {
   enable = true;
   enableZshIntegration = true;
@@ -12,13 +10,12 @@
     };
     conda.symbol = " ";
     dart.symbol = " ";
-    docker.symbol = " ";
+    docker_context.symbol = " ";
     elixir.symbol = " ";
     elm.symbol = " ";
     gcloud.symbol = "  ";
     git_branch.symbol = " ";
     golang.symbol = " ";
-    haskell.symbol = " ";
     hg_branch.symbol = " ";
     java.symbol = " ";
     julia.symbol = " ";

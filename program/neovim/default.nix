@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   vim-zettel = pkgs.vimUtils.buildVimPlugin {
@@ -22,10 +22,9 @@ let
     };
     meta.homepage = "https://github.com/josa42/coc-sh/";
   };
-
 in {
   enable = true;
-  extraConfig = builtins.readFile ../../config/extraConfig.vim;
+  extraConfig = builtins.readFile ../../config/neovim/extraConfig.vim;
 
   extraPython3Packages = (ps: with ps; [jedi]);
 
@@ -53,6 +52,7 @@ in {
     # Style
     nord-vim
     airline
+    vim-airline-themes
 
     # Languages
     coc-nvim

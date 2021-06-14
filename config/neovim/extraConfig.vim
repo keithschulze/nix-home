@@ -109,7 +109,8 @@ let g:nord_italic_comments = 1
 let g:nord_underline = 1
 
 let &fcs='eob: '
-
+" let g:airline_theme='palenight'
+"
 colorscheme nord
 
 " Keybindings
