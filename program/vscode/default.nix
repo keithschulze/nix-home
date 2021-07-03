@@ -51,6 +51,12 @@
       version = "0.6.1";
       sha256 = "1rrbn4vyx033jcbgqhfpqjqahr3qljawljzal8j73kk0z12kqglf";
     }
+    {
+      name = "nix-env-selector";
+      publisher = "arrterian";
+      version = "1.0.7";
+      sha256 = "0mralimyzhyp4x9q98x3ck64ifbjqdp8cxcami7clvdvkmf8hxhf";
+    }
   ];
   userSettings = {
     "workbench.colorTheme" = "Palenight Theme";
@@ -299,7 +305,7 @@
         }
     ];
     "vim.leader" = "<space>";
-    "editor.fontFamily" = "Iosevka, Menlo, 'Courier New', monospace";
+    "editor.fontFamily" = "JetBrainsMono Nerd Font, Menlo, 'Courier New', monospace";
     "editor.fontSize" = 15;
     "editor.minimap.enabled" = false;
     "editor.rulers" = [
@@ -331,7 +337,7 @@
     };
     "editor.renderControlCharacters" = false;
     "terminal.integrated.fontSize" = 15;
-    "terminal.integrated.shellArgs.osx" = ["-l"];
+    "terminal.integrated.inheritEnv" = false;
     "markdown.preview.fontSize" = 15;
     "editor.formatOnSave" = true;
     "breadcrumbs.enabled" = true;

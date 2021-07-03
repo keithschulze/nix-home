@@ -61,6 +61,7 @@ in {
     coc-json
     coc-rust-analyzer
     coc-explorer
+    coc-java
 
     vimwiki
     vim-zettel

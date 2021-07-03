@@ -1,6 +1,65 @@
 { config, pkgs, lib, ... }:
 
 {
+
+  home.packages = with pkgs; [
+    # utils
+    jq
+    htop
+    fzf
+    ripgrep
+    fd
+
+    # dev
+    shellcheck
+    tmux
+    tmuxinator
+    graphviz
+
+    # languages
+    nodejs
+
+    # tools
+    poetry
+    cookiecutter
+  ];
+
+  programs.ssh.enable = true;
+
+  programs.gpg = {
+    enable = true;
+  };
+
+  programs.git = {
+    enable = true;
+    userName = "Keith Schulze";
+    userEmail = "keith.schulze@hey.com";
+    aliases = {
+      co = "checkout";
+      up = "!git pull --rebase --prune $@";
+      cob = "checkout -b";
+      cm = "!git add -a && git commit -m";
+      save = "!git add -a && git commit -m 'savepoint'";
+      wip = "!git add -u && git commit -m 'wip'";
+      undo = "reset head~1 --mixed";
+      amend = "commit -a --amend";
+      wipe = "!git add -a && git commit -qm 'wipe savepoint' && git reset head~1 --hard";
+    };
+    extraConfig = {
+      github.user = "keithschulze";
+      color.ui = true;
+      push.default = "simple";
+      pull.rebase = true;
+      merge.conflictstyle = "diff3";
+      credential.helper = "osxkeychain";
+      diff.tool = "vimdiff";
+      difftool.prompt = false;
+      core.commitGraph = true;
+      gc.writeCommitGraph = true;
+      init.defaultBranch = "main";
+    };
+  };
+
   programs.neovim = (import ../../program/neovim/default.nix) { inherit config; inherit pkgs; };
 
   programs.tmux = (import ../../program/tmux/default.nix) { inherit pkgs; };

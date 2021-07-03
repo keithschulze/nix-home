@@ -73,7 +73,7 @@ in {
   programs.git = {
     enable = true;
     userName = "Keith Schulze";
-    userEmail = "keith.schulze@thoughtworks.com";
+    userEmail = "keith.schulze@reece.com.au";
     aliases = {
       co = "checkout";
       up = "!git pull --rebase --prune $@";
@@ -86,7 +86,6 @@ in {
       wipe = "!git add -a && git commit -qm 'wipe savepoint' && git reset head~1 --hard";
     };
     extraConfig = {
-      github.user = "keithschulze-tw";
       color.ui = true;
       push.default = "simple";
       pull.rebase = true;
@@ -99,7 +98,7 @@ in {
       init.defaultBranch = "main";
     };
     signing = {
-      key = "9E570B3D76B11770";
+      key = "653A35CECE7873BE";
       signByDefault = true;
     };
   };
@@ -123,48 +122,6 @@ in {
         publisher = "ms-vscode-remote";
         version = "0.65.7";
         sha256 = "1q5x6ds2wlg3q98ybvic00j19l33pablx7wczywa7fc26f8h9xzj";
-      }
-      {
-        name = "vscode-java-pack";
-        publisher = "vscjava";
-        version = "0.16.0";
-        sha256 = "182gqg683v5w83vpcxbxicy4cs8xpafwxq88gr6v2zj9j0qhz40i";
-      }
-      {
-        name = "java";
-        publisher = "redhat";
-        version = "0.79.2";
-        sha256 = "08dcy108gnhq5z0i7fhgclwq67p956l4csl5xrmsa2vsqfn00q4z";
-      }
-      {
-        name = "vscode-java-debug";
-        publisher = "vscjava";
-        version = "0.34.0";
-        sha256 = "0yjm39r5f8b0d1gb4xswk82wf05dryqq0dssa20j4klm9yhygz14";
-      }
-      {
-        name = "vscode-java-test";
-        publisher = "vscjava";
-        version = "0.30.0";
-        sha256 = "0vzkm0r4lz1cbf4z3zxysqgwxs7qfgq498isxmil033dbav9iy0j";
-      }
-      {
-        name = "vscode-maven";
-        publisher = "vscjava";
-        version = "0.31.0";
-        sha256 = "1yyyf1zkwbba8kxpwcg7kibsv3jxnyh95h4i2kzavklrrkl1xpyf";
-      }
-      {
-        name = "vscode-java-dependency";
-        publisher = "vscjava";
-        version = "0.18.4";
-        sha256 = "1wr0r8banrlhkdfhgwrgcd63ig56bycz6fzdw6qcwfmp0qs12shn";
-      }
-      {
-        name = "vscodeintellicode";
-        publisher = "VisualStudioExptTeam";
-        version = "1.2.14";
-        sha256 = "1j72v6grwasqk34m1jy3d6w3fgrw0dnsv7v17wca8baxrvgqsm6g";
       }
     ];
 
