@@ -26,7 +26,7 @@ in {
     poetry
     cookiecutter
     awscli2
-    saml2aws
+    # saml2aws
     geckodriver
   ];
 
@@ -111,18 +111,15 @@ in {
   programs.starship = import ../../program/starship/default.nix;
 
   programs.vscode = lib.attrsets.overrideExisting vscodeBase {
-    extensions = vscodeBaseExts ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+    extensions = vscodeBaseExts ++ [
+      pkgs.vscode-extensions.ms-vscode-remote.remote-ssh
+      pkgs.vscode-extensions.mechatroner.rainbow-csv
+    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
-        name = "remote-ssh";
-        publisher = "ms-vscode-remote";
-        version = "0.65.7";
-        sha256 = "10ynl4pzlxy2k8f2zk3nfkp81br12a2aa6hzpd3zfnpwg6zc91mf";
-      }
-      {
-        name = "remote-ssh-edit";
-        publisher = "ms-vscode-remote";
-        version = "0.65.7";
-        sha256 = "1q5x6ds2wlg3q98ybvic00j19l33pablx7wczywa7fc26f8h9xzj";
+        name = "vsliveshare";
+        publisher = "ms-vsliveshare";
+        version = "1.0.4498";
+        sha256 = "1idcfklcpnclf0n1l4xs2xxkmqm4smk3afkwijaj3qwcdzls0g06";
       }
       {
         name = "vscode-java-pack";
