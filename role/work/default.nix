@@ -119,7 +119,7 @@ in {
         name = "vsliveshare";
         publisher = "ms-vsliveshare";
         version = "1.0.4498";
-        sha256 = "1idcfklcpnclf0n1l4xs2xxkmqm4smk3afkwijaj3qwcdzls0g06";
+        sha256 = "01gg9jqkq9z05ckw0mnqfr769359j6h3z8ay6r17jj6m4mhy2m5g";
       }
       {
         name = "vscode-java-pack";
