@@ -104,14 +104,22 @@ endif
 
 
 " Nord options
-let g:nord_italic = 1
-let g:nord_italic_comments = 1
-let g:nord_underline = 1
+" let g:nord_italic = 1
+" let g:nord_italic_comments = 1
+" let g:nord_underline = 1
 
 let &fcs='eob: '
 " let g:airline_theme='palenight'
 "
-colorscheme nord
+" colorscheme nord
+
+" Tokyo Night
+let g:tokyonight_style = "storm"
+let g:tokyonight_italic_functions = 1
+let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
+let g:lightline = {'colorscheme': 'tokyonight'}
+
+colorscheme tokyonight
 
 " Keybindings
 

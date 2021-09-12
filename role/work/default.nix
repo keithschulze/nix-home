@@ -24,6 +24,7 @@ in {
 
     # tools
     poetry
+    black
     cookiecutter
     awscli2
     # saml2aws
@@ -73,7 +74,7 @@ in {
   programs.git = {
     enable = true;
     userName = "Keith Schulze";
-    userEmail = "keith.schulze@thoughtworks.com";
+    userEmail = "keith.schulze@reece.com.au";
     aliases = {
       co = "checkout";
       up = "!git pull --rebase --prune $@";
@@ -86,7 +87,6 @@ in {
       wipe = "!git add -a && git commit -qm 'wipe savepoint' && git reset head~1 --hard";
     };
     extraConfig = {
-      github.user = "keithschulze-tw";
       color.ui = true;
       push.default = "simple";
       pull.rebase = true;
@@ -99,7 +99,7 @@ in {
       init.defaultBranch = "main";
     };
     signing = {
-      key = "9E570B3D76B11770";
+      key = "653A35CECE7873BE";
       signByDefault = true;
     };
   };
@@ -114,6 +114,7 @@ in {
     extensions = vscodeBaseExts ++ [
       pkgs.vscode-extensions.ms-vscode-remote.remote-ssh
       pkgs.vscode-extensions.mechatroner.rainbow-csv
+      pkgs.vscode-extensions.hashicorp.terraform
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "vsliveshare";
@@ -190,6 +191,25 @@ in {
       unset __conda_setup
       # <<< conda initialize <<<
 
+
+      function awslogin () {
+          local ACCOUNT=$1
+          if [ -z "''\${1}" ] ; then
+              echo 'No profile name given, assuming data-nonprod'
+              ACCOUNT=data-nonprod
+          fi
+          local env_vars
+          local exit_status
+          env_vars="$(echo '0' | aws-okta env "''\${ACCOUNT}" -t 8h0m0s)"
+          exit_status=$?
+
+          if [ $exit_status -eq 0 ] ; then
+              export $(echo "''\${env_vars}")
+          else
+              $(exit $exit_status)
+          fi
+      }
+
       PATH=$HOME/.bin:$PATH
     '';
     sessionVariables = {
@@ -202,7 +222,6 @@ in {
         "ripgrep"
         "tmux"
         "zsh_reload"
-        "kubectl"
       ];
     };
   };

@@ -51,7 +51,9 @@ in {
 
     # Style
     nord-vim
-    airline
+    tokyonight-nvim
+    # airline
+    lightline-vim
     vim-airline-themes
 
     # Languages
