@@ -109,8 +109,6 @@ endif
 " let g:nord_underline = 1
 
 let &fcs='eob: '
-" let g:airline_theme='palenight'
-"
 " colorscheme nord
 
 " Tokyo Night
@@ -213,7 +211,7 @@ nnoremap <leader>bp :bprevious<CR>
 nnoremap <leader>b/ :Lines<CR>
 nnoremap <leader>bl :BLines<CR>
 
-nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gs :Git<CR>
 nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gl :Commits<CR>

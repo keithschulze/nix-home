@@ -3,7 +3,7 @@
 {
   enable = true;
   extensions = with pkgs; [
-    vscode-extensions.bbenoist.Nix
+    vscode-extensions.bbenoist.nix
     vscode-extensions.ms-azuretools.vscode-docker
     vscode-extensions.redhat.vscode-yaml
     vscode-extensions.vscodevim.vim

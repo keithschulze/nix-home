@@ -24,7 +24,26 @@
     cookiecutter
   ];
 
-  programs.ssh.enable = true;
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      nix-aws = {
+        hostname = "13.239.106.150";
+        user = "root";
+        extraOptions = {
+          AddKeysToAgent = "yes";
+        };
+        identityFile = "~/.ssh/id_rsa";
+        localForwards = [
+          {
+            bind.port = 8888;
+            host.address = "127.0.0.1";
+            host.port = 8888;
+          }
+        ];
+      };
+    };
+  };
 
   programs.gpg = {
     enable = true;
