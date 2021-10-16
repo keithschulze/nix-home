@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   vim-zettel = pkgs.vimUtils.buildVimPlugin {
@@ -24,7 +24,15 @@ let
   };
 in {
   enable = true;
-  extraConfig = builtins.readFile ../../config/neovim/extraConfig.vim;
+  # extraConfig = builtins.readFile ../../config/neovim/extraConfig.vim;
+  extraConfig = builtins.concatStringsSep "\n" [
+    (lib.strings.fileContents ../../config/neovim/base.vim)
+    ''
+      lua << EOF
+      ${lib.strings.fileContents ../../config/neovim/lsp.lua}
+      EOF
+    ''
+  ];
 
   extraPython3Packages = (ps: with ps; [jedi]);
 
@@ -48,6 +56,10 @@ in {
     vim-bufkill
 
     nerdtree
+    luasnip
+    nvim-cmp
+    cmp-nvim-lsp
+    cmp_luasnip
 
     # Style
     nord-vim
@@ -56,14 +68,8 @@ in {
     lightline-vim
     vim-airline-themes
 
-    # Languages
-    coc-nvim
-    coc-python
-    coc-yaml
-    coc-json
-    coc-rust-analyzer
-    coc-explorer
-    coc-java
+    # LSP
+    nvim-lspconfig
 
     vimwiki
     vim-zettel

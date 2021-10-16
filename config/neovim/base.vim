@@ -160,32 +160,12 @@ nnoremap Q <nop>
 nnoremap / /\v
 vnoremap / /\v
 
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
 
 " remap esc to something that is faster
-" imap jj <esc>
-" imap jk <esc>
-" imap kj <esc>
 imap fd <esc>
 imap jk <esc>
 vno v <esc>
 
-" remap ESC to exit insert mode in terminal
-" tnoremap <Esc> <C-\><C-n>
-
-" Searching
-" remove search highlighting with <F3>
-nnoremap <silent> <leader>/ :nohlsearch<CR>
-
-" -------- space based keybindings
-" meta
-nnoremap <leader>_i :PlugInstall<CR>
-nnoremap <leader>_c :PlugClean<CR>
 
 " project
 nnoremap <silent> <leader>pt :NERDTreeToggle<CR>   " open a horizontal split and switch to it (,h)
@@ -202,7 +182,6 @@ nnoremap <leader>wh <C-w>s<C-w>j   " split horizontally
 nnoremap <leader>ff :Files<CR>
 
 " buffer
-nnoremap <Leader><Tab> :e#<CR> " switch to last buffer
 nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>bd :bdelete<CR>
 nnoremap <leader>bc :BD<CR>
