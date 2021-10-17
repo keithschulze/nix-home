@@ -115,6 +115,8 @@ in {
       pkgs.vscode-extensions.ms-vscode-remote.remote-ssh
       pkgs.vscode-extensions.mechatroner.rainbow-csv
       pkgs.vscode-extensions.hashicorp.terraform
+      pkgs.vscode-extensions.scalameta.metals
+      pkgs.vscode-extensions.scala-lang.scala
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "vsliveshare";
@@ -214,6 +216,10 @@ in {
     '';
     sessionVariables = {
       AWS_DEFAULT_PROFILE = "beach";
+      TALISMAN_HOME = "/Users/keithschulze/.talisman/bin";
+    };
+    shellAliases = {
+      talisman = "/Users/keithschulze/.talisman/bin/talisman_darwin_amd64";
     };
     oh-my-zsh = {
       plugins = [
@@ -229,6 +235,11 @@ in {
   programs.alacritty = {
     enable = true;
     settings = import ../../program/alacritty/default-settings.nix;
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   # home.file.".config/tmuxinator/hotdoc.yml".source = ./config/tmux/hotdoc.yml;
