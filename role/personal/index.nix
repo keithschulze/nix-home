@@ -121,7 +121,6 @@
         "ripgrep"
         "terraform"
         "tmux"
-        "zsh_reload"
         "kubectl"
       ];
     };
