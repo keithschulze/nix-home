@@ -104,7 +104,7 @@ in {
     };
   };
 
-  programs.neovim = (import ../../program/neovim/default.nix) { inherit config; inherit pkgs; };
+  programs.neovim = (import ../../program/neovim/default.nix) { inherit config; inherit pkgs; inherit lib; };
 
   programs.tmux = (import ../../program/tmux/default.nix) { inherit pkgs; };
 
@@ -224,6 +224,7 @@ in {
     oh-my-zsh = {
       plugins = [
         "git"
+        "vi-mode"
         "docker-compose"
         "ripgrep"
         "tmux"

@@ -18,13 +18,12 @@ let
       owner = "josa42";
       repo = "coc-sh";
       rev = "179138ed7ceb04b02a40b7541ec8fd6843721712";
-      sha256 = "163kj7m2388rr17hr21wgrl7bhfx0l9ilwg1g5vh38isdjkk0vh0";
+      sha256 = "163kj7m2388rr17hr21wgrl7bhfx0l9ilwg1g5vh38isdjkk0vhr";
     };
     meta.homepage = "https://github.com/josa42/coc-sh/";
   };
 in {
   enable = true;
-  # extraConfig = builtins.readFile ../../config/neovim/extraConfig.vim;
   extraConfig = builtins.concatStringsSep "\n" [
     (lib.strings.fileContents ../../config/neovim/base.vim)
     ''
@@ -34,7 +33,9 @@ in {
     ''
   ];
 
-  extraPython3Packages = (ps: with ps; [jedi]);
+  withPython3 = true;
+
+  extraPython3Packages = (ps: with ps; [jedi black]);
 
   plugins = with pkgs.vimPlugins; [
     vim-nix

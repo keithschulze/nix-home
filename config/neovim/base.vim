@@ -216,3 +216,4 @@ nnoremap <leader>sn/ :NV<CR>
 nnoremap <leader>zn :ZettelNew<space>
 nnoremap <leader>z<leader>i :ZettelGenerateLinks<CR>
 nnoremap <leader>z<leader>t :ZettelGenerateTags<CR>
+

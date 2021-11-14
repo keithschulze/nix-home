@@ -24,8 +24,8 @@
     {
       name = "plantuml";
       publisher = "jebbs";
-      version = "2.13.13";
-      sha256 = "998726aa18f2b475da17208977f9590b37aed6c4b27419732f21691fcac48214";
+      version = "2.15.1";
+      sha256 = "030rrzadp39byjh792r0wz4mms622plsf9amkics843nf09zzgkv";
     }
     {
       name = "python";

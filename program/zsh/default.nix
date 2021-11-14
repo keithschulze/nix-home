@@ -21,6 +21,7 @@
     enable = true;
     plugins = [
       "git"
+      "vi-mode"
       "docker-compose"
       "ripgrep"
       "tmux"
