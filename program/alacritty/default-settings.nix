@@ -11,9 +11,9 @@
     size = 15.0;
     use_thin_strokes = true;
 
-    normal.family = "JetBrainsMono Nerd Font";
-    bold.family = "JetBrainsMono Nerd Font";
-    italic.family = "JetBrainsMono Nerd Font";
+    normal.family = "FiraCode Nerd Font";
+    bold.family = "FiraCode Nerd Font";
+    italic.family = "FiraCode Nerd Font";
   };
 
   cursor.style = "Block";
