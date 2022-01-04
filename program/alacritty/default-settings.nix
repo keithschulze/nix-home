@@ -3,7 +3,7 @@
 
   window = {
     padding.x = 10;
-    padding.y = 25;
+    padding.y = 10;
     decorations = "transparent";
   };
 

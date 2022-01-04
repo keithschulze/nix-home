@@ -10,18 +10,6 @@ let
       sha256 = "0jrwirz6dhhd4mhrw5vvkdvfhla22hcmxfgxbqdcl272cgpplg5x";
     };
   };
-
-  coc-explorer = pkgs.vimUtils.buildVimPluginFrom2Nix {
-    pname = "coc-sh";
-    version = "2020-09-15";
-    src = pkgs.fetchFromGitHub {
-      owner = "josa42";
-      repo = "coc-sh";
-      rev = "179138ed7ceb04b02a40b7541ec8fd6843721712";
-      sha256 = "163kj7m2388rr17hr21wgrl7bhfx0l9ilwg1g5vh38isdjkk0vhr";
-    };
-    meta.homepage = "https://github.com/josa42/coc-sh/";
-  };
 in {
   enable = true;
   extraConfig = builtins.concatStringsSep "\n" [
@@ -46,6 +34,7 @@ in {
 
     vim-peekaboo
     vim-slash
+    vim-startify
     fzf-vim
     gv-vim
 
@@ -71,6 +60,10 @@ in {
 
     # LSP
     nvim-lspconfig
+
+    # plant-uml
+    plantuml-syntax
+    open-browser
 
     vimwiki
     vim-zettel

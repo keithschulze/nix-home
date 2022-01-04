@@ -97,6 +97,7 @@ in {
       core.commitGraph = true;
       gc.writeCommitGraph = true;
       init.defaultBranch = "main";
+      pager.log = false;
     };
     signing = {
       key = "653A35CECE7873BE";
@@ -228,7 +229,6 @@ in {
         "docker-compose"
         "ripgrep"
         "tmux"
-        "zsh_reload"
       ];
     };
   };
