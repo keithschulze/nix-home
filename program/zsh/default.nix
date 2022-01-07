@@ -25,7 +25,6 @@
       "docker-compose"
       "ripgrep"
       "tmux"
-      "zsh_reload"
     ];
   };
 }
