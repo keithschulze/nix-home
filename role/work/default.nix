@@ -57,13 +57,6 @@ in {
         };
         identityFile = "~/.ssh/id_ed25519_thoughtworks";
       };
-      "stash.reecenet.org" = {
-        hostname = "stash.reecenet.org";
-        extraOptions = {
-          AddKeysToAgent = "yes";
-        };
-        identityFile = "~/.ssh/id_ed25519_reece";
-      };
     };
   };
 
@@ -74,7 +67,7 @@ in {
   programs.git = {
     enable = true;
     userName = "Keith Schulze";
-    userEmail = "keith.schulze@reece.com.au";
+    userEmail = "keith.schulze@thoughtworks.com";
     aliases = {
       co = "checkout";
       up = "!git pull --rebase --prune $@";
@@ -100,7 +93,7 @@ in {
       pager.log = false;
     };
     signing = {
-      key = "653A35CECE7873BE";
+      key = "9E570B3D76B11770";
       signByDefault = true;
     };
   };
@@ -194,25 +187,6 @@ in {
       unset __conda_setup
       # <<< conda initialize <<<
 
-
-      function awslogin () {
-          local ACCOUNT=$1
-          if [ -z "''\${1}" ] ; then
-              echo 'No profile name given, assuming data-nonprod'
-              ACCOUNT=data-nonprod
-          fi
-          local env_vars
-          local exit_status
-          env_vars="$(echo '0' | aws-okta env "''\${ACCOUNT}" -t 8h0m0s)"
-          exit_status=$?
-
-          if [ $exit_status -eq 0 ] ; then
-              export $(echo "''\${env_vars}")
-          else
-              $(exit $exit_status)
-          fi
-      }
-
       PATH=$HOME/.bin:$PATH
     '';
     sessionVariables = {
@@ -244,4 +218,7 @@ in {
   };
 
   # home.file.".config/tmuxinator/hotdoc.yml".source = ./config/tmux/hotdoc.yml;
+  home.file.".config/nix/nix.conf".text = ''
+    experimental-features = nix-command flakes
+  '';
 }
