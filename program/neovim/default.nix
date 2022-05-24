@@ -21,6 +21,10 @@ in {
     ''
   ];
 
+  package = pkgs.neovim-unwrapped.overrideAttrs (oldAttrs: rec {
+    NIX_LDFLAGS = [ ];
+  });
+
   withPython3 = true;
 
   extraPython3Packages = (ps: with ps; [jedi black]);

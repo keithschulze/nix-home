@@ -90,7 +90,7 @@ in {
       core.commitGraph = true;
       gc.writeCommitGraph = true;
       init.defaultBranch = "main";
-      pager.log = false;
+      pager.log = true;
     };
     signing = {
       key = "9E570B3D76B11770";

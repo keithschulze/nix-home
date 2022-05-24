@@ -1,10 +1,10 @@
 {
-  background_opacity = 1.0;
+  window_opacity = 1.0;
 
   window = {
     padding.x = 10;
     padding.y = 10;
-    decorations = "transparent";
+    decorations = "full";
   };
 
   font = {
