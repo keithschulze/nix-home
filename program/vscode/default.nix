@@ -8,6 +8,7 @@
     vscode-extensions.redhat.vscode-yaml
     vscode-extensions.vscodevim.vim
     vscode-extensions.matklad.rust-analyzer
+    vscode-extensions.ms-python.python
   ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     {
       name = "github-vscode-theme";
@@ -26,12 +27,6 @@
       publisher = "jebbs";
       version = "2.15.1";
       sha256 = "030rrzadp39byjh792r0wz4mms622plsf9amkics843nf09zzgkv";
-    }
-    {
-      name = "python";
-      publisher = "ms-python";
-      version = "2020.8.106424";
-      sha256 = "80b7f5704ff8f8094d700bf74cc375d6cc1a753a4ce36a62fb4e46c4d00436bc";
     }
     {
       name = "vscode-pylance";
