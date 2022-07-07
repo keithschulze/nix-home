@@ -10,6 +10,9 @@
     ripgrep
     fd
 
+    # editors
+    helix
+
     # dev
     shellcheck
     tmux
@@ -22,6 +25,8 @@
     # tools
     poetry
     cookiecutter
+    terraform
+    terraform-ls
   ];
 
   programs.ssh = {
@@ -139,4 +144,6 @@
   home.file.".config/nix/nix.conf".text = ''
     experimental-features = nix-command flakes
   '';
+
+  home.file.".config/helix/config.toml".text = builtins.readFile ../../config/helix/config.toml;
 }
