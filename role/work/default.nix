@@ -18,6 +18,9 @@ in {
     tmuxinator
     graphviz
 
+    # editors
+    helix
+
     # languages
     nodejs
     adoptopenjdk-hotspot-bin-16
@@ -221,4 +224,6 @@ in {
   home.file.".config/nix/nix.conf".text = ''
     experimental-features = nix-command flakes
   '';
+
+  home.file.".config/helix/config.toml".text = builtins.readFile ../../config/helix/config.toml;
 }
